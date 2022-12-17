@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM python:3.9-bullseye
 
-ENV METASTORE_HADOOP_VERSION=3.2.0
+ENV METASTORE_HADOOP_VERSION=3.2.4
 ENV METASTORE_VERSION=3.0.0
 ENV HADOOP_HOME=/opt/hadoop
 ENV HIVE_HOME=/opt/metastore
@@ -78,11 +78,11 @@ RUN curl https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3
     && rm awscliv2.zip \
     && rm -rf aws/ \
 # Download and install haddop for metastore 
-  && curl https://archive.apache.org/dist/hadoop/common/hadoop-${METASTORE_HADOOP_VERSION}/hadoop-${METASTORE_HADOOP_VERSION}.tar.gz -Lo hadoop.tgz \
+  && curl https://dlcdn.apache.org/hadoop/common/hadoop-${METASTORE_HADOOP_VERSION}/hadoop-${METASTORE_HADOOP_VERSION}.tar.gz -Lo hadoop.tgz \
     && tar xvzf hadoop.tgz --directory ${HADOOP_HOME} --strip-components 1 \
     && rm hadoop.tgz \
 # Download and install Hive metastore
-  && curl https://downloads.apache.org/hive/hive-standalone-metastore-${METASTORE_VERSION}/hive-standalone-metastore-${METASTORE_VERSION}-bin.tar.gz -Lo hive.tgz \ 
+  && curl https://repo1.maven.org/maven2/org/apache/hive/hive-standalone-metastore/${METASTORE_VERSION}/hive-standalone-metastore-${METASTORE_VERSION}-bin.tar.gz -Lo hive.tgz \
     && tar xvzf hive.tgz --directory ${HIVE_HOME} --strip-components 1 \
     && rm hive.tgz \
 # Download and install Kyuubi JDBC
