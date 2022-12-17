@@ -59,7 +59,7 @@ RUN curl https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3
   && python3 install.py --sys-prefix \
   && rm -rf ijava-1.3.0.zip	install.py java \
 # Download spark distribution and install it
-  && curl https://archive.apache.org/dist/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz -o spark-3.3.1-bin-hadoop3.tgz \
+  && curl https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz -o spark-3.3.1-bin-hadoop3.tgz \
     && tar xvzf spark-3.3.1-bin-hadoop3.tgz --directory /opt/spark --strip-components 1 \
     && rm spark-3.3.1-bin-hadoop3.tgz \
 # Download iceberg spark runtime
@@ -70,7 +70,7 @@ RUN curl https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3
     && mv bundle-2.17.247.jar /opt/spark/jars \
 # Download URL connection client required for S3FileIO
   && curl https://repo1.maven.org/maven2/software/amazon/awssdk/url-connection-client/2.17.247/url-connection-client-2.17.247.jar -Lo url-connection-client-2.17.247.jar \
-     && mv url-connection-client-2.17.247.jar /opt/spark/jars \
+    && mv url-connection-client-2.17.247.jar /opt/spark/jars \
 # Install AWS CLI
   && curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
     && unzip awscliv2.zip \
